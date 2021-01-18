@@ -11,9 +11,9 @@ export function mainGridConfig() {
       bounds: { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight },
       cells: [
         {
-          name: 'logo',
-          bounds: { x: 0, y: 0, width: 1, height: 0.24 },
-          padding: 0.1,
+          name: 'mainGameView',
+          bounds: { x: 0.1, y: 0.2, width: 0.8, height: 0.8 },
+          padding: 0.01,
         },
         {
           name: 'left',
