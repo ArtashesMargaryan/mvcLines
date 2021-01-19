@@ -12,7 +12,7 @@ export function mainGridConfig() {
       cells: [
         {
           name: 'mainGameView',
-          bounds: { x: 0.1, y: 0.2, width: 0.8, height: 0.8 },
+          bounds: { x: 0.1, y: 0.2, width: 0.7, height: 0.8 },
           padding: 0.01,
         },
         {
