@@ -1,10 +1,11 @@
-import { Graphics, Container } from 'pixi.js';
+import { Container, Graphics } from 'pixi.js';
 
 export class CellView extends Container {
-  constructor(row, col) {
+  constructor(row, col, uId) {
     super();
     this.row = row;
     this.col = col;
+    this.uId = uId;
     this._buildRec();
   }
 

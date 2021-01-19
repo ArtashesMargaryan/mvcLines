@@ -1,11 +1,11 @@
 const gameConfig = {
-  score: 2048,
+  score: 0,
   board: {
     size: 7,
     bkColor: 0xbbada0,
   },
 };
 
-export function getGameCofig() {
+export function getGameConfig() {
   return gameConfig;
 }

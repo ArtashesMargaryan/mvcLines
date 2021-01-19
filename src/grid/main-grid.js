@@ -1,29 +1,25 @@
-import { CellAlign, CellScale, PixiGrid } from '@armathai/pixi-grid';
-import { gatImgFrame, getFuterText, getTextStyle } from '../game-config';
+import { lego } from '@armathai/lego';
+import { PixiGrid } from '@armathai/pixi-grid';
+import { ModelEvents } from '../events/model-events';
+import { GameView } from '../view/game-view';
 import { mainGridConfig } from './main-grid-config';
-import { MainGameView } from '../view/game-view';
 
-export class MainGrid extends PixiGrid {
-  getGridConfig() {
-    return mainGridConfig();
-  }
-
+export class MainView extends PixiGrid {
   constructor(config) {
     super();
-    this._build();
-    this.rebuild();
+    lego.event.on(ModelEvents.Store.GameUpdate, this._onGameUpdate, this);
+  }
+
+  getGridConfig() {
+    return mainGridConfig();
   }
 
   rebuild() {
     super.rebuild(this.getGridConfig());
   }
 
-  _build() {
-    this.buildMainGame();
-  }
-
-  buildMainGame() {
-    this.mainGridConfig = new MainGameView();
-    this.setChild('mainGameView', this.mainGridConfig);
+  _onGameUpdate() {
+    this._gameView = new GameView();
+    this.setChild('gameView', this._gameView);
   }
 }

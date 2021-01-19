@@ -1,5 +1,3 @@
-import { CellAlign, CellScale } from '@armathai/pixi-grid';
-
 function LP(l, p) {
   return window.innerWidth > window.innerHeight ? l : p;
 }
@@ -11,8 +9,8 @@ export function mainGridConfig() {
       bounds: { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight },
       cells: [
         {
-          name: 'mainGameView',
-          bounds: { x: 0.1, y: 0.2, width: 0.7, height: 0.8 },
+          name: 'gameView',
+          bounds: { x: 0.1, y: 0.2, width: 0.7, height: 0.7 },
           padding: 0.01,
         },
         {
