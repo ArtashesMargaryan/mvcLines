@@ -6,60 +6,14 @@ export function mainGridConfig() {
   return LP(
     {
       name: 'main',
+
       bounds: { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight },
       cells: [
         {
           name: 'gameView',
-          bounds: { x: 0.1, y: 0.2, width: 0.7, height: 0.7 },
+          bounds: { x: 0.15, y: 0.2, width: 0.7, height: 0.7 },
+
           padding: 0.01,
-        },
-        {
-          name: 'left',
-          bounds: { x: 0, y: 0.25, width: 0.48, height: 0.6 },
-          cells: [
-            {
-              name: 'itemLeft',
-              bounds: { x: 0, y: 0, width: 1, height: 0.75 },
-            },
-            {
-              name: 'textLeftBolt',
-              bounds: { x: 0, y: 0.75, width: 1, height: 0.15 },
-            },
-            {
-              name: 'textLeft',
-              bounds: { x: 0, y: 0.9, width: 1, height: 0.1 },
-              padding: 0.01,
-            },
-          ],
-        },
-        {
-          name: 'right',
-          bounds: { x: 0.52, y: 0.25, width: 0.48, height: 0.6 },
-          cells: [
-            {
-              name: 'itemRight',
-              bounds: { x: 0, y: 0, width: 1, height: 0.75 },
-            },
-            {
-              name: 'textRightBolt',
-              bounds: { x: 0, y: 0.75, width: 1, height: 0.15 },
-            },
-            {
-              name: 'textRight',
-              bounds: { x: 0, y: 0.9, width: 1, height: 0.1 },
-              padding: 0.01,
-            },
-          ],
-        },
-        {
-          name: 'futer',
-          bounds: { x: 0, y: 0.9, width: 1, height: 0.11 },
-          cells: [
-            {
-              name: 'futerText',
-              bounds: { x: 0.3, y: 0, width: 0.4, height: 1 },
-            },
-          ],
         },
       ],
     },

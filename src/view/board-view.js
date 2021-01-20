@@ -27,14 +27,13 @@ export class Board extends PIXI.Container {
         this.cells[indexI].push(cell);
       });
     });
-    console.warn(cells);
   }
 
   cellRower() {
     this.cells.forEach((cells, indexX) => {
       cells.forEach((cell, indexY) => {
-        cell.x = indexX * 120;
-        cell.y = indexY * 120;
+        cell.x = indexX * 105;
+        cell.y = indexY * 105;
       });
     });
   }

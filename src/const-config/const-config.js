@@ -3,6 +3,7 @@ const gameConfig = {
   board: {
     size: 7,
     bkColor: 0xbbada0,
+    firstBallCount: 3,
   },
 };
 
