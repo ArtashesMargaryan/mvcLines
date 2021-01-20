@@ -6,6 +6,7 @@ export class GameModel extends ObservableModel {
   constructor() {
     super('GameModel');
     this._board = null;
+
     this.config = getGameConfig();
 
     this.makeObservable();
@@ -17,5 +18,6 @@ export class GameModel extends ObservableModel {
 
   initializeBoardModel() {
     this._board = new BoardModel(this.config.board);
+    this._board.initialize();
   }
 }

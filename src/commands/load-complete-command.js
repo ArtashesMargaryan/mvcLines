@@ -1,8 +1,7 @@
 import { lego } from '@armathai/lego';
 import { store } from '../models/store';
 
-export function onLoadCompleteCommand(i, j, uuid) {
-  console.warn(i, j);
+export function onLoadCompleteCommand() {
   lego.command.execute(initializeGameModelCommand);
 }
 

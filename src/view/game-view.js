@@ -7,6 +7,7 @@ export class GameView extends PIXI.Container {
   constructor() {
     super();
     this.board = null;
+
     lego.event.on(ModelEvents.GameModel.BoardUpdate, this._onBoardUpdate, this);
   }
 
@@ -20,13 +21,10 @@ export class GameView extends PIXI.Container {
 
   _buildBoard(boardModel) {
     this.addChild((this.board = new Board(boardModel)));
-    lego.event.emit(ViewEvents.GameViewEvent.CreateBoard);
+    lego.event.emit(ViewEvents.GameView.BoardCreationCommit);
   }
 
   _destroyBoard() {
-    if (this.board == null) {
-      return;
-    }
     this.board.destroy();
     this.board = null;
   }

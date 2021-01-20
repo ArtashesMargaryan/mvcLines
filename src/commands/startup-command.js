@@ -5,6 +5,6 @@ import { onLoadCompleteCommand } from './load-complete-command';
 import { onGameUpdateCommand } from './on-game-update-command';
 
 export function startupCommand() {
-  lego.command.on(ViewEvents.Game.LoadComplete, onLoadCompleteCommand, 1, 1, 2);
-  lego.command.on(ModelEvents.Store.GameUpdate, onGameUpdateCommand, 1, 1, 2);
+  lego.command.on(ViewEvents.Game.LoadComplete, onLoadCompleteCommand);
+  lego.command.on(ModelEvents.Store.GameUpdate, onGameUpdateCommand);
 }
