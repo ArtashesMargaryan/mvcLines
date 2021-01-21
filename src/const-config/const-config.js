@@ -7,13 +7,7 @@ const gameConfig = {
     cellSize: 100,
     ball: {
       size: 80,
-      colors: {
-        1: '0x1c4fff',
-        2: '0xffcd40',
-        3: '0xf16712',
-        4: '0xd6de9f',
-        5: '0x00c000',
-      },
+      colors: ['0x1c4fff', '0xffcd40', '0xf16712', '0xd6de9f', '0x00c000'],
     },
   },
 };

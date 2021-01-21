@@ -1,6 +1,8 @@
 import { lego } from '@armathai/lego';
 import { Container, Graphics } from 'pixi.js';
+import { getColors } from '../const-config/const-config';
 import { ModelEvents } from '../events/model-events';
+import { returnRandomNum } from '../utils';
 
 export class BallView extends Container {
   constructor(params) {
@@ -16,9 +18,11 @@ export class BallView extends Container {
   }
 
   _buildRec() {
+    const colors = getColors();
+    const color = colors[returnRandomNum(colors.length - 1)];
     const gr = new Graphics();
     gr.lineStyle(10, 0xffbd01, 1);
-    gr.beginFill(0xc34288, 1);
+    gr.beginFill(color, 1);
     gr.drawCircle(0, 0, 40);
     gr.endFill();
 

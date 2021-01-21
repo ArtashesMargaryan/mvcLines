@@ -55,9 +55,7 @@ export class CellModel extends ObservableModel {
 
   selectedBall() {
     this._selected = !this._selected;
-    // this.ball.selecting();
     this.ball.active = !this.ball.active;
-    console.warn(this.ball);
   }
 
   destroy() {}

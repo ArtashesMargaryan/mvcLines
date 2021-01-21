@@ -6,7 +6,6 @@ export function checkCellCommand(cell) {
   // const select = cell.selected;
 
   if (cell.ball) {
-    console.warn('hasa stex');
     if (!store.game.board.searchSelectedCell()) {
       cell.selectedBall();
     } else {
