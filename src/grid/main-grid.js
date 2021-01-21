@@ -11,6 +11,7 @@ export class MainView extends PixiGrid {
 
     lego.event.on(ModelEvents.Store.GameUpdate, this._onGameUpdate, this);
     lego.event.on(ViewEvents.GameView.BoardCreationCommit, this._onCreatedBoard, this);
+    lego.event.on(ViewEvents.BoardView.CellCreateCommit, this._onCreatedCells, this);
   }
 
   getGridConfig() {
@@ -28,6 +29,10 @@ export class MainView extends PixiGrid {
   }
 
   _onCreatedBoard() {
+    this.rebuild();
+  }
+
+  _onCreatedCells() {
     this.rebuild();
   }
 }

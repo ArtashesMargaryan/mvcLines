@@ -35,12 +35,10 @@ export class BoardModel extends ObservableModel {
 
   initialize() {
     this.initializeCells();
-    // this.generatorBallInCell();
   }
 
   initializeCells() {
     const cells = [];
-
     const { size } = this.config;
     for (let i = 0; i < size; i++) {
       cells[i] = [];
@@ -56,6 +54,7 @@ export class BoardModel extends ObservableModel {
       }
     }
     this._cells = cells;
+    this.generatorBallInCell();
   }
 
   buildFirstCells() {
@@ -68,7 +67,7 @@ export class BoardModel extends ObservableModel {
   }
 
   crateDefCell() {
-    const selectCellIndex = returnRandomNum(this.emptyCells.length);
+    const selectCellIndex = returnRandomNum(this.emptyCells.length - 1);
     const cell = this.emptyCells[selectCellIndex];
     this.emptyCells.splice(selectCellIndex, 1);
     return cell;
@@ -76,9 +75,33 @@ export class BoardModel extends ObservableModel {
 
   generatorBallInCell() {
     const cells = this.buildFirstCells();
-    console.warn(cells);
     cells.forEach((cell) => {
       cell.buildBall();
+      //  this.searchSelectedCell(); /// jnjel vercacneluc heto
     });
+  }
+
+  searchSelectedCell() {
+    const length = this.cells.length;
+    for (let i = 0; i < length; i++) {
+      for (let j = 0; j < length; j++) {
+        if (this.cells[i][j].selected) {
+          return this.cells[i][j];
+        } else {
+          return false;
+        }
+      }
+    }
+  }
+
+  unSelectedCells() {
+    const length = this.cells.length;
+    for (let i = 0; i < length; i++) {
+      for (let j = 0; j < length; j++) {
+        if (this.cells[i][j].selected) {
+          this.cells[i][j].selected = false;
+        }
+      }
+    }
   }
 }

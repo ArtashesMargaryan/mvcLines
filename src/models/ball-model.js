@@ -1,18 +1,23 @@
-export class BallModel {
+import { ObservableModel } from './observable-model';
+
+export class BallModel extends ObservableModel {
   constructor(config) {
+    super('BallModel');
     this.config = config;
     const { row, col } = config;
     this.status = false;
-    this.scale = 1;
+    this._active = false;
+    this.type = config.type;
+    this.makeObservable();
     // config.type != 0 ? (this.type = config.type) : 1;
   }
-  selecting() {
-    if (!this.status) {
-      this.status = true;
-      this.scale = 0.8;
-      return;
-    }
-    this.scale = 1;
-    this.status = false;
+
+  get active() {
+    return this._active;
+  }
+
+  set active(value) {
+    this._active = value;
+    console.warn(this._active);
   }
 }

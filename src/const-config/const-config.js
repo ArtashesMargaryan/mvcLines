@@ -25,3 +25,7 @@ export function getGameConfig() {
 export function getColors() {
   return gameConfig.board.ball.colors;
 }
+
+export function getCellSize() {
+  return gameConfig.board.cellSize;
+}

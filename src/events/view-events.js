@@ -5,4 +5,11 @@ export const ViewEvents = Object.freeze({
   GameView: {
     BoardCreationCommit: 'GameViewEventCreatedBoard',
   },
+  BoardView: {
+    CellCreateCommit: 'BoardViewCreateCell',
+  },
+  CellView: {
+    CellCreatedCommit: 'BoardViewCreatedCell',
+    CellSelectCommit: 'BoardViewSelectCell',
+  },
 });

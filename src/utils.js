@@ -1,3 +1,3 @@
 export function returnRandomNum(maxVal) {
-  return Math.round(Math.random() * maxVal);
+  return Math.floor(Math.random() * maxVal);
 }

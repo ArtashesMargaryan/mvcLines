@@ -5,22 +5,32 @@ export class CellModel extends ObservableModel {
     super('CellModel');
     this.config = config;
     this._selected = false;
-    this._row = config.row;
-    this._col = config.col;
+    this._row = null;
+    this._col = null;
     this._ball = null;
     this.makeObservable();
+  }
+
+  get selected() {
+    return this._selected;
+  }
+
+  set selected(value) {
+    return (this._selected = value);
   }
 
   get row() {
     return this._row;
   }
+
   get col() {
     return this._col;
   }
 
   get ball() {
-    return _ball;
+    return this._ball;
   }
+
   get cellSize() {
     return 100;
   }
@@ -41,6 +51,13 @@ export class CellModel extends ObservableModel {
   initialize() {
     this._row = this.config.row;
     this._col = this.config.col;
+  }
+
+  selectedBall() {
+    this._selected = !this._selected;
+    // this.ball.selecting();
+    this.ball.active = !this.ball.active;
+    console.warn(this.ball);
   }
 
   destroy() {}
