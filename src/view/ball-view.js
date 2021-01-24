@@ -10,6 +10,8 @@ export class BallView extends Container {
     this.row = params.c;
     this._scale = 1;
     this._uuid = params.uuid;
+    console.warn(params);
+    this.type = params.type ? params.type : null
     // this.row = row;
     // this.col = col;
     // this.uId = uId;
@@ -19,7 +21,13 @@ export class BallView extends Container {
 
   _buildRec() {
     const colors = getColors();
-    const color = colors[returnRandomNum(colors.length - 1)];
+    let color
+    if (!this.type) {
+      color = colors[returnRandomNum(colors.length - 1)];
+    } else {
+      color = colors[this.type];
+
+    }
     const gr = new Graphics();
     gr.lineStyle(10, 0xffbd01, 1);
     gr.beginFill(color, 1);

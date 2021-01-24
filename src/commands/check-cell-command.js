@@ -16,7 +16,9 @@ export function checkCellCommand(uuId) {
       console.warn(1);
       const cellActive = store.game.board.getActiveCell()
       const ball = cellActive.removeBall()
-      chackCell.createBall(ball)
+      // ball.x = chackCell.x
+      // ball.y = chackCell.y
+      ball & chackCell.createBall(ball)
       console.warn(ball);
     } else {
 

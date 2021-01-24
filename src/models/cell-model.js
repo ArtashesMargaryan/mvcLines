@@ -1,3 +1,5 @@
+import { getColors } from '../const-config/const-config';
+import { returnRandomNum } from '../utils';
 import { BallModel } from './ball-model';
 import { ObservableModel } from './observable-model';
 export class CellModel extends ObservableModel {
@@ -9,6 +11,16 @@ export class CellModel extends ObservableModel {
     this._col = null;
     this._ball = null;
     this.makeObservable();
+
+  }
+
+  configs(type) {
+    const colors = getColors();
+   
+    const typeBall = colors[returnRandomNum(colors.length - 1)];
+    const config = { row: this._row, col: this._col, type: type };
+    return config
+
   }
 
   get selected() {
@@ -40,8 +52,7 @@ export class CellModel extends ObservableModel {
   }
 
   buildBall() {
-    const config = { row: this._row, col: this._col, type: 1 };
-    this._ball = new BallModel(config);
+    this._ball = new BallModel(this.configs());
   }
 
   createBall(ball) {
