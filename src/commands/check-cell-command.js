@@ -1,19 +1,28 @@
 import { store } from '../models/store';
 
-export function checkCellCommand(cell) {
-  ///searchSelectedCell()
-  console.warn(cell);
-  // const select = cell.selected;
+export function checkCellCommand(uuId) {
+  console.warn(uuId);
+  const chackCell = store.game.board.getCellByUId(uuId)
 
-  if (cell.ball) {
-    if (!store.game.board.searchSelectedCell()) {
-      cell.selectedBall();
+  if (chackCell.ball) {
+    if (!store.game.board.getActiveCell()) {
+      chackCell.selectedCell()
     } else {
-      console.warn('ekav');
+      chackCell.selectedCell()
 
-      store.game.board.unSelectedCells();
-      cell.selectedBall();
     }
   } else {
+    if (store.game.board.getActiveCell()) {
+      console.warn(1);
+      const cellActive = store.game.board.getActiveCell()
+      const ball = cellActive.removeBall()
+      chackCell.createBall(ball)
+      console.warn(ball);
+    } else {
+
+      console.warn(2);
+
+    }
+
   }
 }

@@ -43,6 +43,6 @@ export class CellView extends Container {
   }
 
   onCellClickAction() {
-    lego.event.emit(ViewEvents.CellView.CellSelectCommit, this.model);
+    lego.event.emit(ViewEvents.CellView.CellSelectCommit, this.uId);
   }
 }

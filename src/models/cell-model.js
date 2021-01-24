@@ -44,6 +44,10 @@ export class CellModel extends ObservableModel {
     this._ball = new BallModel(config);
   }
 
+  createBall(ball) {
+    this._ball = ball
+  }
+
   initializeBallComponent() {
     // const colorsType=
   }
@@ -53,10 +57,20 @@ export class CellModel extends ObservableModel {
     this._col = this.config.col;
   }
 
-  selectedBall() {
-    this._selected = !this._selected;
+  selectedCell() {
     this.ball.active = !this.ball.active;
+    this._selected = !this._selected
+
   }
 
-  destroy() {}
+  destroy() { }
+
+  removeBall() {
+
+    const ball = this.ball
+    this.ball.destroy()
+    this.buildBall = null
+    return ball
+
+  }
 }

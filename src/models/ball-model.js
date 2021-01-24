@@ -17,7 +17,6 @@ export class BallModel extends ObservableModel {
   }
 
   set active(value) {
-    this._active = value;
-    console.warn(this._active);
+    return this._active = value;
   }
 }
