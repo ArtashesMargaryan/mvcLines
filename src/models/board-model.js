@@ -1,7 +1,7 @@
+import * as PF from 'pathfinding';
 import { returnRandomNum } from '../utils';
 import { CellModel } from './cell-model';
 import { ObservableModel } from './observable-model';
-
 export class BoardModel extends ObservableModel {
   constructor(config) {
     super('BoardModel');
@@ -52,8 +52,8 @@ export class BoardModel extends ObservableModel {
       cells[i] = [];
       for (let j = 0; j < size; j++) {
         const cellConfig = {
-          row: j,
-          col: i,
+          row: i,
+          col: j,
           cellSize: this.config.cellSize,
         };
         const cell = new CellModel(cellConfig);
@@ -87,5 +87,35 @@ export class BoardModel extends ObservableModel {
       cell.buildBall();
       //  this.searchSelectedCell(); /// jnjel vercacneluc heto
     });
+  }
+  moveBall(fromCell, toCell) {
+    const path = this.getPath(fromCell, toCell);
+  }
+
+  buildBinaryMatrix() {
+    const matrix = [];
+    for (let i = 0; i < this._cells.length; i++) {
+      matrix[i] = [];
+      for (let j = 0; j < this._cells.length; j++) {
+        if (this._cells[i][j].ball) {
+          matrix[i][j] = 1;
+        } else {
+          matrix[i][j] = 0;
+        }
+      }
+    }
+    return matrix;
+  }
+
+  getPath(from, to) {
+    const { row: colTo, col: rowTo } = to.config;
+    const { row: colFrom, col: rowFrom } = from.config;
+    console.warn(rowFrom, rowTo);
+    const matrix = this.buildBinaryMatrix();
+    const grid = new PF.Grid(matrix);
+    const finder = new PF.AStarFinder();
+    const path = finder.findPath(rowFrom, colFrom, rowTo, colTo, grid);
+    console.table(matrix);
+    console.warn(path);
   }
 }

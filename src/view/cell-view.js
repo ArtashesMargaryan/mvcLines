@@ -8,8 +8,8 @@ export class CellView extends Container {
   constructor(model) {
     super();
     this.interactive = true;
-    this.row = model.row;
-    this.col = model.col;
+    this.row = model.config.col;
+    this.col = model.config.row;
     this.uId = model.uuid;
     this.ball = null;
     this.model = model;
@@ -54,6 +54,7 @@ export class CellView extends Container {
   }
 
   onCellClickAction() {
+    console.warn(this.row, this.col);
     lego.event.emit(ViewEvents.CellView.CellSelectCommit, this.uId);
   }
 
