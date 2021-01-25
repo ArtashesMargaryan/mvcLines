@@ -9,7 +9,7 @@ export class BoardModel extends ObservableModel {
     this._cells = null;
     this._emptyCells = [];
     this._defaultBallsCells = [];
-
+    this.matrix = null;
     this.makeObservable();
   }
 
@@ -90,6 +90,7 @@ export class BoardModel extends ObservableModel {
   }
   moveBall(fromCell, toCell) {
     const path = this.getPath(fromCell, toCell);
+    return path;
   }
 
   buildBinaryMatrix() {
@@ -97,8 +98,8 @@ export class BoardModel extends ObservableModel {
     for (let i = 0; i < this._cells.length; i++) {
       matrix[i] = [];
       for (let j = 0; j < this._cells.length; j++) {
-        if (this._cells[i][j].ball) {
-          matrix[i][j] = 1;
+        if (this._cells[j][i].ball) {
+          matrix[i][j] = this._cells[j][i].ball.type + 1;
         } else {
           matrix[i][j] = 0;
         }
@@ -108,14 +109,16 @@ export class BoardModel extends ObservableModel {
   }
 
   getPath(from, to) {
-    const { row: colTo, col: rowTo } = to.config;
-    const { row: colFrom, col: rowFrom } = from.config;
+    const { row: rowTo, col: colTo } = to.config;
+    const { row: rowFrom, col: colFrom } = from.config;
     console.warn(rowFrom, rowTo);
     const matrix = this.buildBinaryMatrix();
+    this.matrix = matrix;
     const grid = new PF.Grid(matrix);
     const finder = new PF.AStarFinder();
     const path = finder.findPath(rowFrom, colFrom, rowTo, colTo, grid);
-    console.table(matrix);
-    console.warn(path);
+    return path;
   }
+
+  matchCheck() {}
 }

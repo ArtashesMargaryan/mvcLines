@@ -31,10 +31,10 @@ export function checkCellCommand(uuId) {
   }
 }
 
-function replacementBall(oldCell, newCell) {
-  const ball = oldCell.removeBall();
-  oldCell.selectedCell();
-  ball.active = false;
-  newCell.createBall(ball);
-  // newCell.selectedCell();
-}
+// function replacementBall(oldCell, newCell) {
+//   const ball = oldCell.removeBall();
+//   oldCell.selectedCell();
+//   ball.active = false;
+//   newCell.createBall(ball);
+//   // newCell.selectedCell();
+// }
