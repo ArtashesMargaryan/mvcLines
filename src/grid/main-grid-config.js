@@ -10,10 +10,28 @@ export function mainGridConfig() {
       bounds: { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight },
       cells: [
         {
+          name: 'title',
+          bounds: { x: 0.15, y: 0.0, width: 0.7, height: 0.19 },
+          debug: {
+            color: 0x000000,
+          },
+          cells: [
+            {
+              name: 'nextBall',
+              bounds: { x: 0, y: 0, width: 0.5, height: 1 },
+            },
+            {
+              name: 'score',
+              bounds: { x: 0.5, y: 0, width: 0.5, height: 1 },
+            },
+          ],
+        },
+        {
           name: 'gameView',
           bounds: { x: 0.15, y: 0.2, width: 0.7, height: 0.7 },
-
-          padding: 0.01,
+          debug: {
+            color: 0x000000,
+          },
         },
       ],
     },
@@ -22,8 +40,28 @@ export function mainGridConfig() {
       bounds: { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight },
       cells: [
         {
-          name: 'logo',
-          bounds: { x: 0, y: 0, width: 1, height: 0.2 },
+          name: 'title',
+          bounds: { x: 0.1, y: 0.0, width: 0.8, height: 0.19 },
+          debug: {
+            color: 0x000000,
+          },
+          cells: [
+            {
+              name: 'nextBall',
+              bounds: { x: 0, y: 0, width: 0.5, height: 1 },
+            },
+            {
+              name: 'score',
+              bounds: { x: 0.5, y: 0, width: 0.5, height: 1 },
+            },
+          ],
+        },
+        {
+          name: 'gameView',
+          bounds: { x: 0.1, y: 0.2, width: 0.8, height: 0.7 },
+          debug: {
+            color: 0x000000,
+          },
         },
       ],
     }

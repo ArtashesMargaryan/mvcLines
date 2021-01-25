@@ -13,7 +13,6 @@ export class BoardModel extends ObservableModel {
     this.makeObservable();
   }
 
-
   get cells() {
     return this._cells;
   }
@@ -39,13 +38,11 @@ export class BoardModel extends ObservableModel {
   }
 
   getCellByUId(uuid) {
-
-    return this.cells.flat().find(cell => cell.uuid === uuid)
+    return this.cells.flat().find((cell) => cell.uuid === uuid);
   }
 
   getActiveCell() {
-    console.warn(this.cells.flat().find(cell => cell.selected === true));
-    return this.cells.flat().find(cell => cell.selected === true)
+    return this.cells.flat().find((cell) => cell.selected === true);
   }
 
   initializeCells() {
@@ -90,41 +87,5 @@ export class BoardModel extends ObservableModel {
       cell.buildBall();
       //  this.searchSelectedCell(); /// jnjel vercacneluc heto
     });
-  }
-
-  searchSelectedCell() {
-    const length = this.cells.length;
-    for (let i = 0; i < length; i++) {
-      for (let j = 0; j < length; j++) {
-        // console.warn("mtav");
-        if (this.cells[i][j].selected) {
-          return this.cells[i][j];
-        }
-      }
-      return false;
-    }
-  }
-
-  serchCell(cell) {
-    const uId = cell.uuid
-    for (let i = 0; i < length; i++) {
-      for (let j = 0; j < length; j++) {
-        if (this.cells[i][j].uuid === uId) {
-          return this.cells[i][j];
-        }
-      }
-      return false;
-    }
-  }
-
-  unSelectedCells() {
-    const length = this.cells.length;
-    for (let i = 0; i < length; i++) {
-      for (let j = 0; j < length; j++) {
-        if (this.cells[i][j].selected) {
-          this.cells[i][j].selected = false;
-        }
-      }
-    }
   }
 }

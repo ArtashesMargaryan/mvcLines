@@ -11,12 +11,14 @@ export class CellView extends Container {
     this.row = model.row;
     this.col = model.col;
     this.uId = model.uuid;
+    this.ball = null;
     this.model = model;
     this._buildRec();
     this.addEvent();
     // lego.event.on(ModelEvents.CellModel.BallUpdate, 'this._onSelectBall', this);
 
-    lego.event.on(ModelEvents.CellModel.BallUpdate, this._onCreatedCells, this);
+    lego.event.on(ModelEvents.CellModel.BallUpdate, this._onUpdatedCells, this);
+    lego.event.on(ModelEvents.CellModel.SelectedUpdate, this._onUpdateSelected, this);
     // lego.event.on(ViewEvents.);
   }
 
@@ -28,21 +30,61 @@ export class CellView extends Container {
     this.addChild(gr);
   }
 
-  _onCreatedCells(newModel, oldBall, uuid) {
+  _onUpdatedCells(newModel, oldBall, uuid) {
+    if (newModel) {
+      this._onUpdateBall(newModel, uuid);
+    } else {
+      this.removeBall(uuid);
+    }
+  }
+  _onUpdateBall(newModel, uuid) {
     if (this.uId == uuid) {
-      this.createBall(newModel);
+      newModel & this.buildBall(newModel);
+      !newModel & this.removeBall();
     }
   }
 
   addEvent() {
     this.on('pointerup', this.onCellClickAction, this);
   }
-  createBall(model) {
+
+  buildBall(model, toChang) {
     const ball = new BallView(model);
-    this.addChild(ball);
+    this.addChild((this.ball = ball));
   }
 
   onCellClickAction() {
     lego.event.emit(ViewEvents.CellView.CellSelectCommit, this.uId);
+  }
+
+  removeBall(uuid) {
+    if (this.uId == uuid) {
+      this.ball.destroy();
+    }
+  }
+
+  _onUpdateSelected(newValue, oldValue, uuid) {
+    if (this.uId === uuid) {
+      this.ball.selected();
+    }
+  }
+
+  selected() {
+    console.warn('ekav1');
+    return;
+    console.warn(this);
+    if (!this.ball) {
+      this.ball.selected();
+    }
+    console.warn(this.ball.scaleBall);
+    this.ball.selected();
+  }
+
+  getCellBallId() {
+    if (this.ball) {
+      return this.ball.uuid;
+    } else {
+      return null;
+    }
   }
 }

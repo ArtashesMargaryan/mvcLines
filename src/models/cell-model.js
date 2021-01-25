@@ -11,16 +11,14 @@ export class CellModel extends ObservableModel {
     this._col = null;
     this._ball = null;
     this.makeObservable();
-
   }
 
   configs(type) {
     const colors = getColors();
-   
+
     const typeBall = colors[returnRandomNum(colors.length - 1)];
     const config = { row: this._row, col: this._col, type: type };
-    return config
-
+    return config;
   }
 
   get selected() {
@@ -56,7 +54,9 @@ export class CellModel extends ObservableModel {
   }
 
   createBall(ball) {
-    this._ball = ball
+    // this._selected = !this._selected;
+    // this.selectedCell();
+    this.ball = ball;
   }
 
   initializeBallComponent() {
@@ -69,19 +69,19 @@ export class CellModel extends ObservableModel {
   }
 
   selectedCell() {
-    this.ball.active = !this.ball.active;
-    this._selected = !this._selected
-
+    if (this.ball) {
+      this.ball.active = !this.ball.active;
+    }
+    this._selected = !this._selected;
   }
 
-  destroy() { }
+  destroy() {}
 
   removeBall() {
-
-    const ball = this.ball
-    this.ball.destroy()
-    this.buildBall = null
-    return ball
-
+    this.ball.active = !this.ball.active;
+    const ball = this.ball;
+    this._ball.destroy();
+    this._ball = null;
+    return ball;
   }
 }

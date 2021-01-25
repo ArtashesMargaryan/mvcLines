@@ -1,30 +1,40 @@
+import { lego } from '@armathai/lego';
 import { store } from '../models/store';
+import { moveBallCommands } from './move-ball-commands';
 
 export function checkCellCommand(uuId) {
-  console.warn(uuId);
-  const chackCell = store.game.board.getCellByUId(uuId)
-
-  if (chackCell.ball) {
-    if (!store.game.board.getActiveCell()) {
-      chackCell.selectedCell()
+  const checkCell = store.game.board.getCellByUId(uuId);
+  const activeCell = store.game.board.getActiveCell();
+  if (checkCell.ball) {
+    if (checkCell.selected) {
+      checkCell.selectedCell();
+    } else if (!activeCell) {
+      /// chka select cell
+      console.warn(checkCell);
+      checkCell.selectedCell();
     } else {
-      chackCell.selectedCell()
-
+      activeCell.selectedCell();
+      checkCell.selectedCell();
     }
   } else {
-    if (store.game.board.getActiveCell()) {
-      console.warn(1);
-      const cellActive = store.game.board.getActiveCell()
-      const ball = cellActive.removeBall()
-      // ball.x = chackCell.x
-      // ball.y = chackCell.y
-      ball & chackCell.createBall(ball)
-      console.warn(ball);
+    if (activeCell) {
+      activeCell.selectedCell();
+      lego.command
+        ///
+        .payload(checkCell, activeCell)
+        ///
+        .execute(moveBallCommands);
+      return;
     } else {
-
       console.warn(2);
-
     }
-
   }
+}
+
+function replacementBall(oldCell, newCell) {
+  const ball = oldCell.removeBall();
+  oldCell.selectedCell();
+  ball.active = false;
+  newCell.createBall(ball);
+  // newCell.selectedCell();
 }
