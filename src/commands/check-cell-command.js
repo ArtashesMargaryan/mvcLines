@@ -9,8 +9,6 @@ export function checkCellCommand(uuId) {
     if (checkCell.selected) {
       checkCell.selectedCell();
     } else if (!activeCell) {
-      /// chka select cell
-      console.warn(checkCell);
       checkCell.selectedCell();
     } else {
       activeCell.selectedCell();
@@ -30,11 +28,3 @@ export function checkCellCommand(uuId) {
     }
   }
 }
-
-// function replacementBall(oldCell, newCell) {
-//   const ball = oldCell.removeBall();
-//   oldCell.selectedCell();
-//   ball.active = false;
-//   newCell.createBall(ball);
-//   // newCell.selectedCell();
-// }

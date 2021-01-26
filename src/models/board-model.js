@@ -1,5 +1,12 @@
 import * as PF from 'pathfinding';
-import { contains, findHorizontal, findSecondaryDiagonal, findVertical, returnRandomNum } from '../utils';
+import {
+  contains,
+  findHorizontal,
+  findMainDiagonal,
+  findSecondaryDiagonal,
+  findVertical,
+  returnRandomNum,
+} from '../utils';
 import { CellModel } from './cell-model';
 import { ObservableModel } from './observable-model';
 export class BoardModel extends ObservableModel {
@@ -89,9 +96,37 @@ export class BoardModel extends ObservableModel {
       //  this.searchSelectedCell(); /// jnjel vercacneluc heto
     });
   }
+
+  createNextBallInCell(ballsModel) {
+    console.warn('hasaw');
+    const emptyCells = this._emptyCells;
+    for (let i = 0; i < ballsModel.length; i++) {
+      const index = returnRandomNum(emptyCells.length - 1);
+      emptyCells[index].buildBall(ballsModel[i]);
+      emptyCells.splice(index, 1);
+    }
+    this._emptyCells = emptyCells;
+  }
+
   moveBall(fromCell, toCell) {
     const path = this.getPath(fromCell, toCell);
+    this.moveAnimBall(path);
     return path;
+  }
+
+  moveAnimBall(path) {
+    const anim = setInterval(() => {
+      if (path.length <= 2) {
+        clearInterval(anim);
+      }
+      const i1 = path[0][0];
+      const j1 = path[0][1];
+      const i2 = path[1][0];
+      const j2 = path[1][1];
+      const ball = this._cells[i1][j1].removeBall();
+      this._cells[i2][j2].createBall(ball);
+      path.shift();
+    }, 100);
   }
 
   buildBinaryMatrix() {
@@ -144,6 +179,12 @@ export class BoardModel extends ObservableModel {
           if (v) {
             if (!this._comboAlreadyExists(v)) {
               this._combinations.push(v);
+            }
+          }
+          const md = findMainDiagonal(this._cells, i, j, cell.ball.type, [cell]);
+          if (md) {
+            if (!this._comboAlreadyExists(md)) {
+              this._combinations.push(md);
             }
           }
         }

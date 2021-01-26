@@ -6,8 +6,8 @@ export function moveBallCommands(toCell, fromCell) {
   const path = store.game.board.moveBall(fromCell, toCell);
 
   if (path.length > 0) {
-    const ball = fromCell.removeBall();
-    toCell.createBall(ball);
+    // const ball = fromCell.removeBall();
+    // toCell.createBall(ball);
     lego.command
       ///
       .execute(matchCheckCommands);

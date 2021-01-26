@@ -17,7 +17,7 @@ export function mainGridConfig() {
           },
           cells: [
             {
-              name: 'nextBall',
+              name: 'nextBalls',
               bounds: { x: 0, y: 0, width: 0.5, height: 1 },
             },
             {
@@ -47,7 +47,8 @@ export function mainGridConfig() {
           },
           cells: [
             {
-              name: 'nextBall',
+              name: 'nextBalls',
+              padding: 0.08,
               bounds: { x: 0, y: 0, width: 0.5, height: 1 },
             },
             {

@@ -1,5 +1,6 @@
 const gameConfig = {
   score: 0,
+  inActionGenerateBallCount: 3,
   board: {
     size: 7,
     bkColor: 0xbbada0,
@@ -22,4 +23,8 @@ export function getColors() {
 
 export function getCellSize() {
   return gameConfig.board.cellSize;
+}
+
+export function getNextBallsCount() {
+  return gameConfig.inActionGenerateBallCount;
 }
