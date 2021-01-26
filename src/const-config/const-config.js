@@ -3,7 +3,7 @@ const gameConfig = {
   board: {
     size: 7,
     bkColor: 0xbbada0,
-    firstBallCount: 8,
+    firstBallCount: 12,
     cellSize: 100,
     ball: {
       size: 80,

@@ -1,5 +1,12 @@
 import { store } from '../models/store';
 
 export function matchCheckCommands() {
-  store.game.board.matchCheck();
+  const matches = store.game.board.matchCheck();
+  if (matches.length > 0) {
+    store.game.board._destroyBalls();
+  } else {
+    // lego.command
+    //   ///
+    //   .execute(buildNextBallsCommands);
+  }
 }

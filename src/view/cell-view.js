@@ -54,7 +54,6 @@ export class CellView extends Container {
   }
 
   onCellClickAction() {
-    console.warn(this.row, this.col);
     lego.event.emit(ViewEvents.CellView.CellSelectCommit, this.uId);
   }
 
@@ -68,17 +67,6 @@ export class CellView extends Container {
     if (this.uId === uuid) {
       this.ball.selected();
     }
-  }
-
-  selected() {
-    console.warn('ekav1');
-    return;
-    console.warn(this);
-    if (!this.ball) {
-      this.ball.selected();
-    }
-    console.warn(this.ball.scaleBall);
-    this.ball.selected();
   }
 
   getCellBallId() {

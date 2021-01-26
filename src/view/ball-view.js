@@ -36,7 +36,6 @@ export class BallView extends Container {
   }
 
   _onSelectBall() {
-    console.warn(this._scale);
     if (this._scale === 1) {
       this.scale.set((this._scale = 0.8));
     } else {

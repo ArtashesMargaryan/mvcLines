@@ -1,5 +1,5 @@
 import * as PF from 'pathfinding';
-import { returnRandomNum } from '../utils';
+import { contains, findHorizontal, findSecondaryDiagonal, findVertical, returnRandomNum } from '../utils';
 import { CellModel } from './cell-model';
 import { ObservableModel } from './observable-model';
 export class BoardModel extends ObservableModel {
@@ -10,6 +10,7 @@ export class BoardModel extends ObservableModel {
     this._emptyCells = [];
     this._defaultBallsCells = [];
     this.matrix = null;
+    this._combinations = [];
     this.makeObservable();
   }
 
@@ -111,7 +112,6 @@ export class BoardModel extends ObservableModel {
   getPath(from, to) {
     const { row: rowTo, col: colTo } = to.config;
     const { row: rowFrom, col: colFrom } = from.config;
-    console.warn(rowFrom, rowTo);
     const matrix = this.buildBinaryMatrix();
     this.matrix = matrix;
     const grid = new PF.Grid(matrix);
@@ -120,5 +120,57 @@ export class BoardModel extends ObservableModel {
     return path;
   }
 
-  matchCheck() {}
+  matchCheck() {
+    const matrix = this._cells;
+    this._combinations.length = 0;
+    for (let i = 0; i < matrix.length; i++) {
+      for (let j = 0; j < matrix[i].length; j++) {
+        const cell = matrix[i][j];
+        if (cell.ball) {
+          const sd = findSecondaryDiagonal(matrix, i, j, cell.ball.type, [cell]);
+          if (sd) {
+            if (!this._comboAlreadyExists(sd)) {
+              this._combinations.push(sd);
+            }
+          }
+          const h = findHorizontal(matrix, i, j, cell.ball.type, [cell]);
+          if (h) {
+            if (!this._comboAlreadyExists(h)) {
+              this._combinations.push(h);
+            }
+          }
+
+          const v = findVertical(matrix, i, j, cell.ball.type, [cell]);
+          if (v) {
+            if (!this._comboAlreadyExists(v)) {
+              this._combinations.push(v);
+            }
+          }
+        }
+      }
+    }
+    return this._combinations;
+  }
+
+  _comboAlreadyExists(combo) {
+    const comboString = combo.map((cell) => `${cell.row}.${cell.col}`);
+    for (let i = 0; i < this._combinations.length; i++) {
+      const c = this._combinations[i].map((cell) => `${cell.row}.${cell.col}`);
+      if (contains(c, comboString)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  _destroyBalls() {
+    this._combinations.forEach((combo) => {
+      combo.forEach((cell, index) => {
+        setTimeout(() => {
+          cell.removeBall();
+        }, index * 80 + 300);
+      });
+    });
+  }
 }
