@@ -98,10 +98,11 @@ export class BoardModel extends ObservableModel {
   }
 
   createNextBallInCell(ballsModel) {
+    console.warn(this._emptyCells.length);
     const index = returnRandomNum(this._emptyCells.length - 1);
     console.log(this._emptyCells[index]);
     this._emptyCells[index].buildBall(ballsModel);
-    this._emptyCells.splice(index, 1);
+    this.updateEmptyCells();
   }
 
   moveBall(fromCell, toCell, resolve) {
