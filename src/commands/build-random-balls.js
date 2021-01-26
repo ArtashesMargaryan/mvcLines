@@ -8,5 +8,5 @@ export function buildRandomBalls() {
     store.game.board.createNextBallInCell(ballModel);
   });
   // store.game.nextBalls.nextBalls = null;
-  // store.game.nextBalls.initializeNextBall();
+  store.game.nextBalls.initializeNextBall();
 }

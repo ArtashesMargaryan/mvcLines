@@ -49,8 +49,11 @@ export class CellModel extends ObservableModel {
     this._ball = value;
   }
 
-  buildBall() {
-    this._ball = new BallModel(this.configs());
+  buildBall(config = null) {
+    if (config === null) {
+      config = this.configs;
+    }
+    this._ball = new BallModel(config);
   }
 
   createBall(ball) {

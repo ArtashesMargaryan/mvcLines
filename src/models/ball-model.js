@@ -11,7 +11,7 @@ export class BallModel extends ObservableModel {
     this._active = false;
     const colors = getColors();
 
-    config.type
+    config.type != undefined
       ? //
         (this._type = config.type)
       : //

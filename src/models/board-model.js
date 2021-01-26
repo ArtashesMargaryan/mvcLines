@@ -98,26 +98,37 @@ export class BoardModel extends ObservableModel {
   }
 
   createNextBallInCell(ballsModel) {
-    console.warn('hasaw');
-    const emptyCells = this._emptyCells;
-    for (let i = 0; i < ballsModel.length; i++) {
-      const index = returnRandomNum(emptyCells.length - 1);
-      emptyCells[index].buildBall(ballsModel[i]);
-      emptyCells.splice(index, 1);
-    }
-    this._emptyCells = emptyCells;
+    const index = returnRandomNum(this._emptyCells.length - 1);
+    console.log(this._emptyCells[index]);
+    this._emptyCells[index].buildBall(ballsModel);
+    this._emptyCells.splice(index, 1);
   }
 
-  moveBall(fromCell, toCell) {
+  moveBall(fromCell, toCell, resolve) {
     const path = this.getPath(fromCell, toCell);
-    this.moveAnimBall(path);
+    if (path.length < 1) {
+      return resolve();
+    }
+    this.moveAnimBall(path, resolve);
     return path;
   }
 
-  moveAnimBall(path) {
+  updateEmptyCells() {
+    this._emptyCells = [];
+    this._cells.forEach((cells) => {
+      cells.forEach((cell) => {
+        if (cell.ball === null) {
+          this._emptyCells.push(cell);
+        }
+      });
+    });
+  }
+
+  moveAnimBall(path, resolve) {
     const anim = setInterval(() => {
       if (path.length <= 2) {
         clearInterval(anim);
+        resolve();
       }
       const i1 = path[0][0];
       const j1 = path[0][1];
@@ -126,6 +137,7 @@ export class BoardModel extends ObservableModel {
       const ball = this._cells[i1][j1].removeBall();
       this._cells[i2][j2].createBall(ball);
       path.shift();
+      console.warn(this.emptyCells.length);
     }, 100);
   }
 
