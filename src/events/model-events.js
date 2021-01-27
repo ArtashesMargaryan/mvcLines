@@ -16,6 +16,7 @@ export const ModelEvents = Object.freeze({
     CellSizeUpdate: 'CellModelCellSizeUpdate',
   },
   GameModel: {
+    ScoreUpdate: 'GameModelScoreUpdate',
     NextBallsUpdate: 'GameModelNextBallsUpdate',
     BoardUpdate: 'GameModelBoardUpdate',
   },

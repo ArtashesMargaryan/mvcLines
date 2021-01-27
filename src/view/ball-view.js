@@ -28,7 +28,7 @@ export class BallView extends Container {
     const colors = getColors();
     const color = colors[this.type];
     const gr = new Graphics();
-    gr.lineStyle(10, 0xffbd01, 1);
+    gr.lineStyle(10, 0xffbd81, 1);
     gr.beginFill(color, 1);
     gr.drawCircle(0, 0, 40);
     gr.endFill();

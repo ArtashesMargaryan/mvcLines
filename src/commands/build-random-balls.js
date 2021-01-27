@@ -10,6 +10,7 @@ export function buildRandomBalls() {
     if (nextBalls.length - i >= store.game.board.emptyCells.length) {
       return lego.command.execute(gameOverCommands);
     }
+    store.game.board.updateEmptyCells();
     store.game.board.createNextBallInCell(nextBalls[i]);
   }
   // store.game.nextBalls.nextBalls = null;

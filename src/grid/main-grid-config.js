@@ -18,11 +18,15 @@ export function mainGridConfig() {
           cells: [
             {
               name: 'nextBalls',
-              bounds: { x: 0, y: 0, width: 0.5, height: 1 },
+              bounds: { x: 0, y: 0, width: 0.4, height: 1 },
+            },
+            {
+              name: 'retry',
+              bounds: { x: 0.4, y: 0, width: 0.2, height: 1 },
             },
             {
               name: 'score',
-              bounds: { x: 0.5, y: 0, width: 0.5, height: 1 },
+              bounds: { x: 0.6, y: 0, width: 0.4, height: 1 },
             },
           ],
         },
@@ -48,18 +52,21 @@ export function mainGridConfig() {
           cells: [
             {
               name: 'nextBalls',
-              padding: 0.08,
-              bounds: { x: 0, y: 0, width: 0.5, height: 1 },
+              bounds: { x: 0, y: 0, width: 0.4, height: 1 },
+            },
+            {
+              name: 'retry',
+              bounds: { x: 0.4, y: 0, width: 0.2, height: 1 },
             },
             {
               name: 'score',
-              bounds: { x: 0.5, y: 0, width: 0.5, height: 1 },
+              bounds: { x: 0.6, y: 0, width: 0.4, height: 1 },
             },
           ],
         },
         {
           name: 'gameView',
-          bounds: { x: 0.1, y: 0.2, width: 0.8, height: 0.7 },
+          bounds: { x: 0.15, y: 0.2, width: 0.7, height: 0.7 },
           debug: {
             color: 0x000000,
           },

@@ -25,12 +25,7 @@ export class Game extends PIXI.Application {
 
   _loadAssets() {
     this.loader.add('logo', './assets/ui/logo.png');
-    this.loader.add('1', './assets/furniture/1a.png');
-    this.loader.add('2', './assets/furniture/2a.png');
-    this.loader.add('3', './assets/furniture/2b.png');
-    this.loader.add('4', './assets/furniture/1b.png');
-    this.loader.add('5', './assets/furniture/3a.png');
-    this.loader.add('6', './assets/furniture/3b.png');
+    this.loader.add('retry', './assets/retry.png');
     this.loader.load(() => {
       this._build();
     });

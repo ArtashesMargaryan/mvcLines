@@ -11,6 +11,7 @@ export function matchCheckCommands() {
       .payload(matches)
       //
       .execute(scoreUpdateCommands);
+    console.warn(matches);
     store.game.board._destroyBalls();
   } else {
     lego.command.execute(buildRandomBalls);

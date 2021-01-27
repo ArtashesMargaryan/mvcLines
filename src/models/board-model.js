@@ -19,6 +19,7 @@ export class BoardModel extends ObservableModel {
     this.matrix = null;
     this._combinations = [];
     this.makeObservable();
+    this._combo = [];
   }
 
   get cells() {
@@ -98,7 +99,6 @@ export class BoardModel extends ObservableModel {
   }
 
   createNextBallInCell(ballsModel) {
-    console.warn(this._emptyCells.length);
     const index = returnRandomNum(this._emptyCells.length - 1);
     console.log(this._emptyCells[index]);
     this._emptyCells[index].buildBall(ballsModel);
@@ -129,7 +129,9 @@ export class BoardModel extends ObservableModel {
     const anim = setInterval(() => {
       if (path.length <= 2) {
         clearInterval(anim);
-        resolve();
+        setTimeout(() => {
+          resolve();
+        }, 50);
       }
       const i1 = path[0][0];
       const j1 = path[0][1];
@@ -207,9 +209,10 @@ export class BoardModel extends ObservableModel {
   }
 
   _comboAlreadyExists(combo) {
-    const comboString = combo.map((cell) => `${cell.row}.${cell.col}`);
+    const comboString = combo.map((cell) => `${cell.config.row}.${cell.config.col}`);
     for (let i = 0; i < this._combinations.length; i++) {
-      const c = this._combinations[i].map((cell) => `${cell.row}.${cell.col}`);
+      const c = this._combinations[i].map((cell) => `${cell.config.row}.${cell.config.col}`);
+      console.warn(this._combinations.length);
       if (contains(c, comboString)) {
         return true;
       }
@@ -222,7 +225,7 @@ export class BoardModel extends ObservableModel {
     this._combinations.forEach((combo) => {
       combo.forEach((cell, index) => {
         setTimeout(() => {
-          cell.removeBall();
+          cell.ball && cell.removeBall();
         }, index * 80 + 300);
       });
     });

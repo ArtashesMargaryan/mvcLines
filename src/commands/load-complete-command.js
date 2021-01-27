@@ -9,9 +9,9 @@ export function initializeGameModelCommand() {
   store.initializeGameModel();
 }
 
-export function initializeBoardModelCommand() {
-  store.game.initializeBoardModel();
-}
+// export function initializeBoardModelCommand() {
+// store.game.initializeBoardModel();
+// }
 
 // export function initializeBoardModel() {
 //   store.game.board = new BoardModel(config);

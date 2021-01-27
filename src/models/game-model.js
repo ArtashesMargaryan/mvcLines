@@ -48,4 +48,5 @@ export class GameModel extends ObservableModel {
     this._score = new ScoreModel();
     this._score.initialize();
   }
+  destroy() {}
 }

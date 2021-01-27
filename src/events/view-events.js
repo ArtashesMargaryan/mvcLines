@@ -1,6 +1,7 @@
 export const ViewEvents = Object.freeze({
   Game: {
     LoadComplete: 'GameLoadComplete',
+    Retry: 'GameRetry',
   },
   GameView: {
     BoardCreationCommit: 'GameViewEventCreatedBoard',
