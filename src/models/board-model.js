@@ -138,7 +138,7 @@ export class BoardModel extends ObservableModel {
       const ball = this._cells[i1][j1].removeBall();
       this._cells[i2][j2].createBall(ball);
       path.shift();
-      console.warn(this.emptyCells.length);
+      // console.warn(this.emptyCells.length);
     }, 100);
   }
 

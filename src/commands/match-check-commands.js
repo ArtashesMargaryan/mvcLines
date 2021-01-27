@@ -8,7 +8,7 @@ export function matchCheckCommands() {
   if (matches.length > 0) {
     lego.command
       //
-      .payload(matches.length)
+      .payload(matches)
       //
       .execute(scoreUpdateCommands);
     store.game.board._destroyBalls();

@@ -1,10 +1,10 @@
 const gameConfig = {
   score: 0,
-  inActionGenerateBallCount: 13,
+  inActionGenerateBallCount: 3,
   board: {
     size: 7,
     bkColor: 0xbbada0,
-    firstBallCount: 10,
+    firstBallCount: 9,
     cellSize: 100,
     ball: {
       size: 80,

@@ -6,7 +6,6 @@ export function moveBallCommands(toCell, fromCell) {
   let pathLength = 0;
   const prom = new Promise((resolve) => {
     const path = store.game.board.moveBall(fromCell, toCell, resolve);
-    console.warn(path);
     pathLength = path.length;
   }).then(() => {
     if (pathLength > 0) {

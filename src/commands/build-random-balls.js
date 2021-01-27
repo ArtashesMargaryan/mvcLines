@@ -6,13 +6,12 @@ export function buildRandomBalls() {
   const nextBalls = store.game.nextBalls.nextBalls;
 
   console.warn(nextBalls);
-  nextBalls.forEach((ballModel) => {
-    if (nextBalls.length >= store.game.board.emptyCells.length) {
-      lego.command.execute(gameOverCommands);
-      return;
+  for (let i = 0; i < nextBalls.length; i++) {
+    if (nextBalls.length - i >= store.game.board.emptyCells.length) {
+      return lego.command.execute(gameOverCommands);
     }
-    store.game.board.createNextBallInCell(ballModel);
-  });
+    store.game.board.createNextBallInCell(nextBalls[i]);
+  }
   // store.game.nextBalls.nextBalls = null;
   store.game.nextBalls.initializeNextBall();
 }

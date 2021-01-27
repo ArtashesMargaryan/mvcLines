@@ -12,4 +12,11 @@ export class ScoreModel extends ObservableModel {
   set score(value) {
     return (this._score = value);
   }
+
+  initialize() {}
+
+  updateScore(value) {
+    this._score += value;
+    console.warn(this._score);
+  }
 }
