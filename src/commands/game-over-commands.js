@@ -1,4 +1,9 @@
+import { lego } from '@armathai/lego';
+import { ViewEvents } from '../events/view-events';
+import { store } from '../models/store';
+
 export function gameOverCommands() {
-  // store.game.nextBalls.nextBalls = null;
+  const playerScore = store.game.score;
+  lego.event.emit(ViewEvents.Game.GameOver, playerScore);
   console.warn('game over');
 }

@@ -35,7 +35,6 @@ export class ScoreView extends PIXI.Container {
 
   updateScore(value) {
     this._score = value;
-    console.warn(this);
     this.children[0].destroy();
     // this.removeChild('Text');
     this.createScore();

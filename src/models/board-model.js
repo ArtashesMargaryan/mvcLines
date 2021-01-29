@@ -12,6 +12,7 @@ import { ObservableModel } from './observable-model';
 export class BoardModel extends ObservableModel {
   constructor(config) {
     super('BoardModel');
+    this._action = true;
     this.config = config;
     this._cells = null;
     this._emptyCells = [];
@@ -20,6 +21,13 @@ export class BoardModel extends ObservableModel {
     this._combinations = [];
     this.makeObservable();
     this._combo = [];
+  }
+  get action() {
+    return this._action;
+  }
+
+  set action(value) {
+    return (this._action = value);
   }
 
   get cells() {

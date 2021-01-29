@@ -3,6 +3,7 @@ import { PixiGrid } from '@armathai/pixi-grid';
 import { ModelEvents } from '../events/model-events';
 import { ViewEvents } from '../events/view-events';
 import { GameView } from '../view/game-view';
+import { GameOver } from '../view/gameOver-view';
 import { NextBall } from '../view/next-ball-view';
 import { RetryView } from '../view/retry-view';
 import { ScoreView } from '../view/score-view';
@@ -11,10 +12,11 @@ import { mainGridConfig } from './main-grid-config';
 export class MainView extends PixiGrid {
   constructor(config) {
     super();
-    this.score;
+    this.score = null;
+    this.gameOver = null;
     lego.event.on(ModelEvents.NextBallsModel.NextBallsUpdate, this._nextBallsUpdate, this);
     lego.event.on(ModelEvents.ScoreModel.ScoreUpdate, this._onScoreUpdate, this);
-
+    lego.event.on(ViewEvents.Game.GameOver, this._gameOver, this);
     lego.event.on(ModelEvents.Store.GameUpdate, this._onGameUpdate, this);
     lego.event.on(ViewEvents.GameView.BoardCreationCommit, this._onCreatedBoard, this);
     lego.event.on(ViewEvents.BoardView.CellCreateCommit, this._onCreatedCells, this);
@@ -45,38 +47,44 @@ export class MainView extends PixiGrid {
     super.rebuild(config);
   }
 
-  _buildRetry() {
-    const retry = new RetryView();
-    this.setChild('retry', retry);
+  _buildRetry(value) {
+    this.retry = new RetryView();
+
+    this.setChild('retry', this.retry);
   }
 
   _onScoreUpdate(newValue) {
-    if (newValue === null) {
-      this.score.destroy();
-      return;
-    }
+    console.warn('newValue');
     this.score.updateScore(newValue);
   }
 
   _buildScore(newValue) {
-    if (newValue === null) {
-      this.score.destroy();
-      return;
+    if (this.score === null) {
+      this.score = new ScoreView();
     }
-    const score = new ScoreView();
-    this.setChild('score', (this.score = score));
+    this.score.updateScore(0);
+    this.setChild('score', this.score);
   }
 
   _onGameUpdate(newValue, oldValue, uuid) {
     // newValue ? this._buildGameView() : this._destroyGameView()
     if (newValue === null) {
+      this.gameOver && this.gameOver.destroy();
+      this.gameOver = null;
       this._gameView.destroy();
       return;
     }
     this._gameView = new GameView();
     this.setChild('gameView', this._gameView);
-    this._buildScore();
-    this._buildRetry();
+    this._buildScore(newValue);
+    this._buildRetry(newValue);
+  }
+
+  _gameOver(score) {
+    const oldScore = score.score;
+    console.warn(score);
+    this.gameOver = new GameOver(oldScore);
+    this.setChild('gameOver', this.gameOver);
   }
 
   _onCreatedBoard() {

@@ -8,11 +8,11 @@ export class GameModel extends ObservableModel {
   constructor() {
     super('GameModel');
     this._board = null;
-    this._nextBalls = null;
     this._score = null;
     this.config = getGameConfig();
 
     this.makeObservable();
+    this._nextBalls = null;
   }
   get score() {
     return this._score;

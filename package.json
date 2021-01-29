@@ -30,6 +30,7 @@
     "@armathai/lego": "^3.0.2",
     "@armathai/lego-logger": "^3.0.2",
     "@armathai/pixi-grid": "^3.0.5",
+    "@armathai/pixi-particles": "^1.0.5",
     "pathfinding": "^0.4.18",
     "pixi.js": "^5.3.3"
   }

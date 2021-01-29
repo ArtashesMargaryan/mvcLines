@@ -5,6 +5,9 @@ import { moveBallCommands } from './move-ball-commands';
 export function checkCellCommand(uuId) {
   const checkCell = store.game.board.getCellByUId(uuId);
   const activeCell = store.game.board.getActiveCell();
+  if (!store.game.board.action) {
+    return;
+  }
   if (checkCell.ball) {
     if (checkCell.selected) {
       checkCell.selectedCell();
